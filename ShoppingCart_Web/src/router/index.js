@@ -40,8 +40,8 @@ const routes = [
     }
   },
   {
-    path:'/webIndex',
-    name:'WebIndex',
+    path: '/webIndex',
+    name: 'WebIndex',
     meta: {
       title: "商城首页",
       keepAlive: false
@@ -49,9 +49,18 @@ const routes = [
     components: {
       blank: resolve => require(["@/views/webManage/Index.vue"], resolve)
     }
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    meta: {
+      title: "购物车",
+      keepAlive: false
+    },
+    components: {
+      blank: resolve => require(["@/views/webManage/Cart.vue"], resolve)
+    }
   }
-  
-  
 ];
 
 const originalPush = VueRouter.prototype.push;

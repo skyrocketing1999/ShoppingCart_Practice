@@ -6,12 +6,15 @@ import "@/assets/css/style.scss";
 import router from "./router";
 import store from "./store";
 import "@/utils/v-auth.js";
-import { getToken } from "@/utils/common";
+import { getToken, toDecimal2 } from "@/utils/common";
 import "./components";
 
 Vue.config.productionTip = false;
 Vue.prototype.GlobalCfg = Config;
 Vue.use(elementUi);
+Vue.filter('toDecimal', function (value) {
+  return toDecimal2(value);
+})
 
 router.beforeEach((to, from, next) => {
   window.document.title = to.meta.title
