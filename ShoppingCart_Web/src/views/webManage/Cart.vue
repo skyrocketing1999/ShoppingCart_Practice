@@ -1,5 +1,5 @@
 <template>
-  <div class="cartList" v-show="cur == 1">
+  <div class="cartList">
     <el-table
       ref="multipleTable"
       :data="cartTableData"
@@ -32,7 +32,9 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="小计" width="150" prop="goodsTotal"></el-table-column>
+      <el-table-column label="小计" width="150">
+        <template slot-scope="s">{{ s.row.goods.price * s.row.num | toDecimal }}</template>
+      </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="s">
           <el-button type="danger" @click="handleDelete(s.$index)">
@@ -42,9 +44,29 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-button type="info" style="margin-top: 20px">{{ "商品总额：" + moneyTotal }}</el-button>
-    <div style="margin-top: 20px">
-      <el-button @click="toggleSelection()">取消选择</el-button>
+    <div style="margin-top: 20px" slot="append">
+      <div class="cart-footer clear">
+        <div class="delete-con">
+          <a class="cart-delete-seleced link">
+            <el-button @click="dels">删除选中</el-button>
+          </a>
+        </div>
+        <div>
+          <el-button @click="toggleSelection()">取消选择</el-button>
+        </div>
+        <div class="submit-con">
+          <span>
+            已选商品
+            <span id="selectGoodsCount">{{totalCount}}</span> 件
+          </span>
+          <span>总价：</span>
+          <span class="submit-total">
+            ￥
+            <span id="selectGoodsMoney">{{sum | toDecimal}}</span>
+          </span>
+          <el-button class="btn submit-btn" :class="totalCount>0?'':'submitDis'">去结算</el-button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -141,7 +163,70 @@ export default {
         }
         this.moneyTotal += selection[i].goodsTotal;
       }
+    },
+    dels() {
+      //删除选中
+    }
+  },
+  computed: {
+    totalCount: function() {
+      //总件数：遍历对象数组统计数组中每个对象的count值
+      var counts = 0;
+      this.multipleSelection.forEach(function(v) {
+        counts += v.num;
+      });
+      return counts;
+    },
+    sum: function() {
+      //总价钱
+      var totalSum = 0.0;
+      this.multipleSelection.forEach(function(v) {
+        totalSum += v.goods.price * v.num;
+      });
+      return totalSum;
     }
   }
 };
 </script>
+<style lang="scss">
+/* cart-footer */
+.cart-footer {
+  position: relative;
+  line-height: 50px;
+  background: #eee;
+  overflow: hidden;
+}
+.cart-footer .select-con {
+  float: left;
+  padding-left: 20px;
+}
+.cart-footer .delete-con {
+  float: left;
+  margin-left: 20px;
+}
+.cart-footer .submit-con {
+  float: right;
+}
+
+.cart-footer .submit-con .submit-total,
+#selectGoodsCount {
+  font-size: 18px;
+  color: #c60023;
+  font-weight: bold;
+  margin-right: 30px;
+  vertical-align: middle;
+}
+#selectGoodsCount {
+  margin-right: 5px;
+}
+.submit-con .submitDis {
+  background: #b0b0b0;
+  cursor: no-drop;
+}
+.cart-footer .submit-con .btn-submit {
+  width: 80px;
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+}
+</style>

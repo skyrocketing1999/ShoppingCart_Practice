@@ -21,12 +21,11 @@
           value="item.id"
         >{{ item.typename }}</el-menu-item>
       </el-submenu>
-      <el-menu-item index="3" @click="cur = 1" :class="{ active: cur == 1 }">购物车</el-menu-item>
-      <!-- disabled禁用标签 -->
+      <el-menu-item index="3" @click.native="$router.push({name: 'Cart'})">购物车</el-menu-item>
       <el-menu-item index="4">联系我们</el-menu-item>
       <el-menu-item index="5">关于我们</el-menu-item>
       <el-menu-item index="6">
-        <a href="#" target="_blank">后台登录</a>
+        <a href="#" target="_blank">商家登录</a>
       </el-menu-item>
     </el-menu>
     <!-- 轮播图 -->
