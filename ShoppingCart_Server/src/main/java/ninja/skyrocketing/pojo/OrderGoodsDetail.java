@@ -9,12 +9,30 @@ public class OrderGoodsDetail {
 
     private Integer orderid;
 
-    private BigDecimal price;
+    private Double price;
 
     private Integer num;
 
-    private BigDecimal total;
-
+    private Double total;
+    
+    private Goods goods;
+    
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+    
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+    
+    public Goods getGoods() {
+        return goods;
+    }
+    
+    public void setGoods(Goods goods) {
+        this.goods = goods;
+    }
+    
     public Integer getId() {
         return id;
     }
@@ -39,27 +57,11 @@ public class OrderGoodsDetail {
         this.orderid = orderid;
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
     public Integer getNum() {
         return num;
     }
 
     public void setNum(Integer num) {
         this.num = num;
-    }
-
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public void setTotal(BigDecimal total) {
-        this.total = total;
     }
 }

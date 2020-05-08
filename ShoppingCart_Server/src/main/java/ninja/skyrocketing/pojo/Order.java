@@ -1,13 +1,14 @@
 package ninja.skyrocketing.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 public class Order {
     private Integer orderid;
 
     private Integer userid;
 
-    private String total;
+    private double total;
 
     private Integer paytype;
 
@@ -21,6 +22,48 @@ public class Order {
 
     private Date closetime;
 
+    private Integer addressid;
+
+    private String orderno;
+    
+    private User user;
+    
+    private UserAddress userAddress;
+    
+    private List<OrderGoodsDetail> orderGoodsDetail;
+    
+    public double getTotal() {
+        return total;
+    }
+    
+    public void setTotal(double total) {
+        this.total = total;
+    }
+    
+    public User getUser() {
+        return user;
+    }
+    
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
+    public UserAddress getUserAddress() {
+        return userAddress;
+    }
+    
+    public void setUserAddress(UserAddress userAddress) {
+        this.userAddress = userAddress;
+    }
+    
+    public List<OrderGoodsDetail> getOrderGoodsDetails() {
+        return orderGoodsDetail;
+    }
+    
+    public void setOrderGoodsDetails(List<OrderGoodsDetail> orderGoodsDetails) {
+        this.orderGoodsDetail = orderGoodsDetails;
+    }
+    
     public Integer getOrderid() {
         return orderid;
     }
@@ -35,14 +78,6 @@ public class Order {
 
     public void setUserid(Integer userid) {
         this.userid = userid;
-    }
-
-    public String getTotal() {
-        return total;
-    }
-
-    public void setTotal(String total) {
-        this.total = total == null ? null : total.trim();
     }
 
     public Integer getPaytype() {
@@ -91,5 +126,21 @@ public class Order {
 
     public void setClosetime(Date closetime) {
         this.closetime = closetime;
+    }
+
+    public Integer getAddressid() {
+        return addressid;
+    }
+
+    public void setAddressid(Integer addressid) {
+        this.addressid = addressid;
+    }
+
+    public String getOrderno() {
+        return orderno;
+    }
+
+    public void setOrderno(String orderno) {
+        this.orderno = orderno == null ? null : orderno.trim();
     }
 }
