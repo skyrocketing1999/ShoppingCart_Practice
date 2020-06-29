@@ -153,3 +153,7 @@ ShoppingCart_Server/out
 # Output files
 out/
 AlipayTradePage_Demo/src/com/alipay/config/AlipayConfig.java
+ShoppingCart_Server/.project
+ShoppingCart_Server/.settings/org.eclipse.core.resources.prefs
+ShoppingCart_Server/.settings/org.eclipse.jdt.core.prefs
+ShoppingCart_Server/.classpath
